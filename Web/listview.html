@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="../kendo/styles/kendo.common.min.css" rel='stylesheet'/>
+    <link href="../kendo/styles/kendo.default.min.css" rel='stylesheet'/>
+    <link href="../app.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="listView"></div>
+
+<div id="pager" class="k-pager-wrap"></div>
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="song">
+        #if (thumbnails != undefined){#
+        <img src="${thumbnails['320x320']}" alt="${name} image" />
+        #}#
+        <h3>${name}</h3>
+    </div>
+</script>
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="../kendo/js/kendo.web.min.js"></script>
+<script>
+
+    var ds = new kendo.data.DataSource({
+        transport: {
+            read:  {
+                url: "http://api.ent.nokia.com/1.x/us/?category=single&domain=music&app_id=799121394f21416d9c2126cb8bde0534",
+                dataType: "jsonp"
+            },
+            parameterMap: function(data, type) {
+                data.itemsperpage = data.pageSize;
+                if(data.page>1){
+                    data.startindex = data.pageSize * data.page;
+                }
+                return data;
+            }
+        },
+        schema: {
+            data : "data.items",
+            total : "data.paging.total",
+            model: {
+                fields: {
+                    name: { type: "string" }
+                }
+            }
+        },
+        pageSize:20,
+        serverPaging: true
+    });
+
+
+    $(function(){
+        $("#pager").kendoPager({
+            dataSource: ds
+        });
+
+        $("#listView").kendoListView({
+            dataSource: ds,
+            template: kendo.template($("#template").html())
+        });
+    })
+
+</script>
+</body>
+</html>

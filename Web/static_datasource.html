@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="../kendo/styles/kendo.common.min.css" rel='stylesheet'/>
+    <link href="../kendo/styles/kendo.default.min.css" rel='stylesheet'/>
+</head>
+<body>
+<table id="artistTable"></table>
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="../kendo/js/kendo.web.min.js"></script>
+<script>
+    var artistData = [
+        { Name : "Avicii", Country : "AU", Genre : "Dance", Rating : 3},
+        { Name : "Rihanna", Country : "BB", Genre : "Soul/R 'n' B/Funk", Rating : 6},
+        { Name : "Robin Thicke", Country : "US", Genre : "Soul/R 'n' B/Funk", Rating : 1},
+        { Name : "Bruno Mars", Country : "US", Genre : "Soul/R 'n' B/Funk", Rating : 1},
+        { Name : "Lady Gaga", Country : "US", Genre : "Pop", Rating : 4},{ Name : "Olly Murs", Country : "GB", Genre : "Pop", Rating : 4},{ Name : "Adele", Country : "GB", Genre : "Pop", Rating : 8},{ Name : "Ellie Goulding", Country : "GB", Genre : "Pop", Rating : 1},{ Name : "Miley Cyrus", Country : "US", Genre : "Pop", Rating : 6},{ Name : "Eminem", Country : "US", Genre : "Rap/Hip Hop", Rating : 7},{ Name : "David Guetta", Country : "FR", Genre : "Dance", Rating : 2},{ Name : "Katy Perry", Country : "US", Genre : "Pop", Rating : 0},{ Name : "Tinie Tempah", Country : "GB", Genre : "Rap/Hip Hop", Rating : 0},{ Name : "P!nk featuring Nate Ruess", Country : "", Genre : "Pop", Rating : 9},{ Name : "JAY Z", Country : "US", Genre : "Rap/Hip Hop", Rating : 3},{ Name : "will.i.am", Country : "US", Genre : "Pop", Rating : 4},{ Name : "Lana Del Rey", Country : "US", Genre : "Pop", Rating : 7},{ Name : "Jessie J", Country : "GB", Genre : "Pop", Rating : 9},{ Name : "Arctic Monkeys", Country : "GB", Genre : "Indie/Alternative", Rating : 5},{ Name : "Naughty Boy", Country : "US", Genre : "Dance", Rating : 6},{ Name : "John Newman", Country : "", Genre : "Pop", Rating : 7},{ Name : "Taylor Swift", Country : "US", Genre : "Country", Rating : 5},{ Name : "P!nk", Country : "US", Genre : "Pop", Rating : 7},{ Name : "Icona Pop", Country : "", Genre : "Dance", Rating : 3},{ Name : "Take That", Country : "GB", Genre : "Pop", Rating : 7},{ Name : "Passenger", Country : "GB", Genre : "Pop", Rating : 8},{ Name : "Calvin Harris feat. Ayah Marar", Country : "", Genre : "Dance", Rating : 3},{ Name : "The Wanted", Country : "GB", Genre : "Pop", Rating : 3},{ Name : "One Direction", Country : "", Genre : "Pop", Rating : 3},{ Name : "The Black Eyed Peas", Country : "NL", Genre : "Pop", Rating : 4},{ Name : "Jason DerÃ¼lo", Country : "US", Genre : "Pop", Rating : 8},{ Name : "Queen", Country : "GB", Genre : "Rock", Rating : 4},{ Name : "Coldplay", Country : "GB", Genre : "Indie/Alternative", Rating : 9},{ Name : "Kings Of Leon", Country : "US", Genre : "Rock", Rating : 8},{ Name : "Michael BublÃ©", Country : "CA", Genre : "Pop", Rating : 0},{ Name : "Glee Cast", Country : "XX", Genre : "Soundtrack", Rating : 4},{ Name : "The Script", Country : "IE", Genre : "Indie/Alternative", Rating : 9},{ Name : "Ministry Of Sound", Country : "XX", Genre : "Dance", Rating : 0},{ Name : "Robbie Williams", Country : "GB", Genre : "Pop", Rating : 5},{ Name : "P!nk feat. Lily Allen", Country : "", Genre : "Pop", Rating : 2},{ Name : "Disclosure", Country : "GB", Genre : "Dance", Rating : 2},{ Name : "Daft Punk feat. Pharrell Williams", Country : "", Genre : "Pop", Rating : 5},{ Name : "Cheryl", Country : "GB", Genre : "Pop", Rating : 9},{ Name : "BeyoncÃ©", Country : "US", Genre : "Soul/R 'n' B/Funk", Rating : 4},{ Name : "Justin Timberlake", Country : "US", Genre : "Pop", Rating : 2},{ Name : "Bon Jovi", Country : "US", Genre : "Rock", Rating : 1},{ Name : "The Saturdays", Country : "GB", Genre : "Pop", Rating : 0},{ Name : "Imagine Dragons", Country : "", Genre : "Pop", Rating : 6},{ Name : "Cee-Lo Green", Country : "US", Genre : "Rap/Hip Hop", Rating : 1},{ Name : "Mumford & Sons", Country : "GB", Genre : "Indie/Alternative", Rating : 0},{ Name : "Rudimental", Country : "GB", Genre : "Pop", Rating : 2},{ Name : "Rod Stewart", Country : "GB", Genre : "Rock", Rating : 0},{ Name : "Fleetwood Mac", Country : "GB", Genre : "Rock", Rating : 3},{ Name : "David Bowie", Country : "GB", Genre : "Rock", Rating : 8},{ Name : "Swedish House Mafia", Country : "SE", Genre : "Dance", Rating : 2},{ Name : "Florence + The Machine", Country : "GB", Genre : "Indie/Alternative", Rating : 6},{ Name : "Elvis Presley", Country : "US", Genre : "Rock", Rating : 5},{ Name : "Michael Jackson", Country : "US", Genre : "Pop", Rating : 9},{ Name : "The Rolling Stones", Country : "GB", Genre : "Rock", Rating : 5},{ Name : "The Killers", Country : "US", Genre : "Rock", Rating : 2},{ Name : "Flo Rida", Country : "US", Genre : "Rap/Hip Hop", Rating : 9},{ Name : "Pink Floyd", Country : "GB", Genre : "Rock", Rating : 3},{ Name : "Kanye West", Country : "US", Genre : "Rap/Hip Hop", Rating : 8},{ Name : "Foo Fighters", Country : "US", Genre : "Rock", Rating : 7},{ Name : "JLS", Country : "GB", Genre : "Pop", Rating : 3},{ Name : "Maroon 5", Country : "US", Genre : "Rock", Rating : 1},{ Name : "Taio Cruz", Country : "GB", Genre : "Soul/R 'n' B/Funk", Rating : 0},{ Name : "Chris Brown", Country : "US", Genre : "Pop", Rating : 6},{ Name : "Chase & Status", Country : "GB", Genre : "Dance", Rating : 2},{ Name : "Plan B", Country : "GB", Genre : "Rap/Hip Hop", Rating : 3},{ Name : "Bruce Springsteen", Country : "US", Genre : "Rock", Rating : 8},{ Name : "Guns N' Roses", Country : "US", Genre : "Metal", Rating : 8},{ Name : "Bob Marley & The Wailers", Country : "JM", Genre : "Reggae", Rating : 6},{ Name : "U2", Country : "IE", Genre : "Rock", Rating : 9},{ Name : "Elton John", Country : "GB", Genre : "Rock", Rating : 1},{ Name : "Ed Sheeran", Country : "GB", Genre : "Indie/Alternative", Rating : 7},{ Name : "Example", Country : "GB", Genre : "Dance", Rating : 7},{ Name : "Alicia Keys", Country : "US", Genre : "Soul/R 'n' B/Funk", Rating : 4},{ Name : "Macklemore & Ryan Lewis", Country : "US", Genre : "Rap/Hip Hop", Rating : 6},{ Name : "Selena Gomez", Country : "US", Genre : "Soundtrack", Rating : 9},{ Name : "Ne-Yo", Country : "US", Genre : "Soul/R 'n' B/Funk", Rating : 6},{ Name : "Nicki Minaj", Country : "US", Genre : "Rap/Hip Hop", Rating : 8},{ Name : "Ke$ha", Country : "US", Genre : "Pop", Rating : 7},{ Name : "Breach", Country : "SE", Genre : "Metal", Rating : 6},{ Name : "Fall Out Boy", Country : "US", Genre : "Rock", Rating : 9},{ Name : "Justin Timberlake featuring JAY Z", Country : "", Genre : "Pop", Rating : 1},{ Name : "Muse", Country : "GB", Genre : "Indie/Alternative", Rating : 9},{ Name : "Snow Patrol", Country : "GB", Genre : "Indie/Alternative", Rating : 7},{ Name : "Westlife", Country : "GB", Genre : "Pop", Rating : 5},{ Name : "Phil Collins", Country : "GB", Genre : "Rock", Rating : 3},{ Name : "Nelly", Country : "US", Genre : "Rap/Hip Hop", Rating : 0},{ Name : "Stereophonics", Country : "GB", Genre : "Rock", Rating : 5},{ Name : "Nirvana", Country : "US", Genre : "Rock", Rating : 2},{ Name : "R.E.M.", Country : "US", Genre : "Rock", Rating : 6},{ Name : "Kelly Clarkson", Country : "US", Genre : "Pop", Rating : 9},{ Name : "Enrique Iglesias", Country : "ES", Genre : "Pop", Rating : 6},{ Name : "LMFAO", Country : "US", Genre : "Dance", Rating : 2},{ Name : "Britney Spears", Country : "US", Genre : "Pop", Rating : 1},{ Name : "Dizzee Rascal", Country : "GB", Genre : "Rap/Hip Hop", Rating : 2},{ Name : "Eliza Doolittle", Country : "GB", Genre : "Pop", Rating : 2}
+    ];
+
+    var ds = new kendo.data.DataSource({
+        data : artistData,
+        schema: {
+            model: {
+                fields: {
+                    Name: { type: "string" },
+                    Country: { type: "string" },
+                    Genre: { type: "string" },
+                    Rating: { type: "number" }
+                }
+            }
+        },
+        pageSize:10
+    });
+
+    $(function(){
+        $("#artistTable").kendoGrid({
+            dataSource : ds,
+            sortable: true,
+            pageable : true ,
+            filterable : true,
+            columns: [
+                {
+                    field: "Name",
+                    title: "Artist",
+                    width: 300
+                },
+                {
+                    field: "Country",
+                    title: "Locale",
+                    width: 100
+                },
+                {
+                    field: "Rating",
+                    title: "Rank",
+                    width: 100
+                }
+            ]
+        });
+    })
+
+</script>
+</body>
+</html>

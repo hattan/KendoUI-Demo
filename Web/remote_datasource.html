@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="../kendo/styles/kendo.common.min.css" rel='stylesheet'/>
+    <link href="../kendo/styles/kendo.default.min.css" rel='stylesheet'/>
+</head>
+<body>
+<table id="artistTable"></table>
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="../kendo/js/kendo.web.min.js"></script>
+<script>
+
+    var ds = new kendo.data.DataSource({
+        transport: {
+            read:  {
+                url: "http://api.ent.nokia.com/1.x/us/?category=artist&domain=music&app_id=799121394f21416d9c2126cb8bde0534",
+                dataType: "jsonp"
+            },
+            parameterMap: function(data, type) {
+                if(data.page>1){
+                data.itemsperpage = data.pageSize;
+                data.startindex = data.pageSize * data.page;
+                }
+                return data;
+            }
+        },
+        schema: {
+            data : "data.items",
+            total : "data.paging.total",
+            model: {
+                fields: {
+                    name: { type: "string" }
+                }
+            }
+        },
+        pageSize:10,
+        serverPaging: true
+    });
+
+
+    $(function(){
+        $("#artistTable").kendoGrid({
+            dataSource : ds,
+            sortable: true,
+            pageable : true ,
+            filterable : true,
+            columns: [
+                {
+                    field: "name",
+                    title: "Artist",
+                    width: 300
+                }
+            ]
+        });
+    })
+
+</script>
+</body>
+</html>
